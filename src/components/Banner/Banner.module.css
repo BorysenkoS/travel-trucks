@@ -1,0 +1,32 @@
+.bannerSection {
+  background: rgba(0, 0, 0, 0.2) url('../../assets/images/banner/camper.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  padding: 260px 805px 260px 64px;
+}
+
+.banner {
+  width: 571px;
+}
+
+.bannerTitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 67%;
+  color: var(--inputs);
+
+  margin-bottom: 16px;
+}
+
+.bannerText {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--inputs);
+
+  margin-bottom: 40px;
+}

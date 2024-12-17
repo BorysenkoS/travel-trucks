@@ -1,10 +1,10 @@
 import React from 'react';
-import CatalogPage from '../CatalogPage/CatalogPage';
+import Banner from '../../components/Banner/Banner';
 
 const HomePage = () => {
   return (
     <div>
-      HomePage <CatalogPage />
+      <Banner />
     </div>
   );
 };
