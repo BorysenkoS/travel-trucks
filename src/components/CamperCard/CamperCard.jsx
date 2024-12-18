@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../../redux/campersSlice';
 import styles from './CamperCard.module.css';
 import sprite from '../../assets/sprite.svg';
+import Button from '../Button/Button';
+import FeaturesList from '../FeaturesList/FeaturesList';
 
 const CamperCard = ({ camper }) => {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ const CamperCard = ({ camper }) => {
   const handleFavoriteClick = () => {
     dispatch(toggleFavorite(camper.id));
   };
+
   return (
     <div className={styles.card}>
       <img
@@ -18,26 +21,53 @@ const CamperCard = ({ camper }) => {
         src={camper.gallery[0]?.thumb}
         alt={camper.name}
       />
-      <div>
-        <div className={styles.titlePriceWrapper}>
-          <h2 className={styles.cardTitle}>{camper.name}</h2>
-          <div className={styles.priceFavoriteButton}>
-            <p className={styles.cardText}>€{camper.price.toFixed(2)} </p>
-            <button className={styles.cardButton} onClick={handleFavoriteClick}>
-              {isFavorite ? (
-                <svg className={styles.iconHeart} width={25} height={24}>
-                  <use href={`${sprite}#icon-heart-pressed`} />
-                </svg>
-              ) : (
-                <svg width={25} height={24}>
-                  <use href={`${sprite}#icon-heart`} />
-                </svg>
-              )}
-            </button>
+      <div className={styles.cardWrapper}>
+        <div>
+          {' '}
+          <div className={styles.titlePriceWrapper}>
+            <h2 className={styles.cardTitle}>{camper.name}</h2>
+            <div className={styles.priceFavoriteButton}>
+              <p className={styles.cardText}>€{camper.price.toFixed(2)} </p>
+              <button
+                className={styles.cardButton}
+                onClick={handleFavoriteClick}
+              >
+                {isFavorite ? (
+                  <svg className={styles.iconHeart} width={25} height={24}>
+                    <use href={`${sprite}#icon-heart-pressed`} />
+                  </svg>
+                ) : (
+                  <svg width={25} height={24}>
+                    <use href={`${sprite}#icon-heart`} />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+          <div className={styles.reviewsLocationWrapper}>
+            <p className={styles.cardReviewsText}>
+              <svg className={styles.iconRating} width={16} height={16}>
+                <use href={`${sprite}#icon-rating`} />
+              </svg>{' '}
+              {camper.rating}({camper.reviews.length} Reviews)
+            </p>
+            <div className={styles.location}>
+              <svg className={styles.iconRating} width={16} height={16}>
+                <use href={`${sprite}#icon-map`} />
+              </svg>
+              <p>{camper.location}</p>
+            </div>
           </div>
         </div>
-        <p>Rating: {camper.rating}</p>
-        <p>{camper.description}</p>
+        <div className={styles.CardDescription}>
+          <p className={styles.text}>{camper.description}</p>
+        </div>
+
+        <FeaturesList camper={camper} />
+
+        <div>
+          <Button text={'Show more'} />
+        </div>
       </div>
     </div>
   );

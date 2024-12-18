@@ -55,3 +55,44 @@
   align-items: center;
   gap: 12px;
 }
+
+.cardReviewsText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+}
+
+.location {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.reviewsLocationWrapper {
+  display: flex;
+
+  gap: 16px;
+}
+
+.CardDescription {
+  width: 524px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

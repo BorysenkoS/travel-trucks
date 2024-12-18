@@ -5,8 +5,18 @@ const BASE_URL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers';
 
 export const fetchCampers = createAsyncThunk(
   'campers/fetchCampers',
-  async () => {
-    const response = await axios.get(BASE_URL);
+  async (_, { getState }) => {
+    const { location, form, features } = getState().campers.filters;
+
+    const params = {};
+    if (location) params.location = location;
+    if (form) params.form = form;
+
+    features.forEach((feature) => {
+      params[feature] = true;
+    });
+
+    const response = await axios.get(BASE_URL, { params });
     return response.data.items;
   }
 );
@@ -15,7 +25,12 @@ const campersSlice = createSlice({
   name: 'campers',
   initialState: {
     items: [],
-    favorites: [],
+    favorites: JSON.parse(localStorage.getItem('favorites')) || [],
+    filters: {
+      location: '',
+      form: '',
+      features: [],
+    },
     status: 'idle',
     error: null,
   },
@@ -27,12 +42,33 @@ const campersSlice = createSlice({
       } else {
         state.favorites.push(camperId);
       }
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
+    },
+
+    setFilter: (state, action) => {
+      const { key, value } = action.payload;
+      if (key === 'features') {
+        if (state.filters.features.includes(value)) {
+          state.filters.features = state.filters.features.filter(
+            (feature) => feature !== value
+          );
+        } else {
+          state.filters.features.push(value);
+        }
+      } else {
+        state.filters[key] = value;
+      }
+    },
+
+    clearFilters: (state) => {
+      state.filters = { location: '', form: '', features: [] };
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCampers.pending, (state) => {
         state.status = 'loading';
+        state.items = [];
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -45,5 +81,5 @@ const campersSlice = createSlice({
   },
 });
 
-export const { toggleFavorite } = campersSlice.actions;
+export const { toggleFavorite, setFilter, clearFilters } = campersSlice.actions;
 export default campersSlice.reducer;

@@ -1,0 +1,59 @@
+.location {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
+
+  margin-bottom: 8px;
+}
+
+.locationWrapper {
+  margin-bottom: 40px;
+}
+
+.locationSearchInput {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--main);
+
+  border-radius: 12px;
+  padding: 18px 18px 18px 46px;
+  width: 360px;
+  height: 56px;
+  border: none;
+  outline: none;
+
+  background: var(--inputs);
+  background-image: url(../../assets/images/filters/Map.png);
+  background-repeat: no-repeat;
+  background-position: left 18px center;
+  background-size: 20px 20px;
+}
+
+.locationSearchInput:focus {
+  background-image: url(../../assets/images/filters/map-focus.png);
+}
+
+.filtersTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+
+  margin-bottom: 32px;
+}
+
+.filtersVehicle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+
+  margin-bottom: 24px;
+}
+
+.customLine {
+  border: 1px solid var(--gray-light);
+
+  margin-bottom: 24px;
+}
