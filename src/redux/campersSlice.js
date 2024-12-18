@@ -1,25 +1,49 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchCampers, fetchCamperById } from '../api/campersAPI';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-export const getCampers = createAsyncThunk('campers/getCampers', fetchCampers);
+const BASE_URL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers';
+
+export const fetchCampers = createAsyncThunk(
+  'campers/fetchCampers',
+  async () => {
+    const response = await axios.get(BASE_URL);
+    return response.data.items;
+  }
+);
 
 const campersSlice = createSlice({
   name: 'campers',
-  initialState: { list: [], status: 'idle', error: null },
+  initialState: {
+    items: [],
+    favorites: [],
+    status: 'idle',
+    error: null,
+  },
+  reducers: {
+    toggleFavorite: (state, action) => {
+      const camperId = action.payload;
+      if (state.favorites.includes(camperId)) {
+        state.favorites = state.favorites.filter((id) => id !== camperId);
+      } else {
+        state.favorites.push(camperId);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(getCampers.pending, (state) => {
+      .addCase(fetchCampers.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(getCampers.fulfilled, (state, action) => {
+      .addCase(fetchCampers.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.list = action.payload.data;
+        state.items = action.payload;
       })
-      .addCase(getCampers.rejected, (state, action) => {
+      .addCase(fetchCampers.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
+export const { toggleFavorite } = campersSlice.actions;
 export default campersSlice.reducer;

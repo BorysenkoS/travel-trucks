@@ -1,0 +1,57 @@
+.card {
+  display: flex;
+  gap: 24px;
+
+  border: 1px solid var(--gray-light);
+  border-radius: 20px;
+  padding: 24px;
+  width: 888px;
+  height: 368px;
+}
+
+.cardPhoto {
+  display: block;
+  border-radius: 10px;
+  width: 292px;
+  height: 320px;
+
+  object-fit: cover;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+}
+
+.cardText {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+}
+
+.titlePriceWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+}
+
+.iconHeart {
+  width: 25px;
+  height: 24px;
+}
+
+.cardButton {
+  border: none;
+  background: var(--white);
+  padding: 0;
+  cursor: pointer;
+}
+
+.priceFavoriteButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

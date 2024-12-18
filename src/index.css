@@ -33,6 +33,9 @@
   --button-hover: #d84343;
   --rating: #ffc531;
 }
+* {
+  box-sizing: border-box;
+}
 
 body {
   min-width: 1200px;
