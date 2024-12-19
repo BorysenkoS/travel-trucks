@@ -6,11 +6,13 @@ const BASE_URL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers';
 export const fetchCampers = createAsyncThunk(
   'campers/fetchCampers',
   async (_, { getState }) => {
-    const { location, form, features } = getState().campers.filters;
+    const { location, form, features, transmission } =
+      getState().campers.filters;
 
     const params = {};
     if (location) params.location = location;
     if (form) params.form = form;
+    if (transmission) params.transmission = transmission;
 
     features.forEach((feature) => {
       params[feature] = true;
@@ -30,6 +32,7 @@ const campersSlice = createSlice({
       location: '',
       form: '',
       features: [],
+      transmission: '',
     },
     status: 'idle',
     error: null,
@@ -61,7 +64,12 @@ const campersSlice = createSlice({
     },
 
     clearFilters: (state) => {
-      state.filters = { location: '', form: '', features: [] };
+      state.filters = {
+        location: '',
+        form: '',
+        features: [],
+        transmission: '',
+      };
     },
   },
   extraReducers: (builder) => {
