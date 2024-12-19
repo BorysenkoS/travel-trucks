@@ -4,6 +4,7 @@ import styles from './CamperCard.module.css';
 import sprite from '../../assets/sprite.svg';
 import Button from '../Button/Button';
 import FeaturesList from '../FeaturesList/FeaturesList';
+import { Link } from 'react-router-dom';
 
 const CamperCard = ({ camper }) => {
   const dispatch = useDispatch();
@@ -66,7 +67,9 @@ const CamperCard = ({ camper }) => {
         <FeaturesList camper={camper} />
 
         <div>
-          <Button text={'Show more'} />
+          <Link to={`/catalog/${camper.id}`}>
+            <Button text={'Show more'} />
+          </Link>
         </div>
       </div>
     </div>

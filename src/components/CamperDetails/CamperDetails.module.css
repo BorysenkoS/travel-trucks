@@ -1,0 +1,63 @@
+.detailsWrapper {
+  padding: 48px 64px;
+}
+
+.detailsTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+
+  margin-bottom: 8px;
+}
+
+.reviewsLocationWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+.cardReviewsText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cardText {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+
+  margin-bottom: 28px;
+}
+
+.gallery {
+  display: flex;
+  gap: 48px;
+
+  margin-bottom: 28px;
+}
+
+.detailsImages {
+  max-width: 292px;
+  height: 312px;
+
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}

@@ -37,6 +37,7 @@ const Filters = () => {
   const handleSearch = () => {
     const trimmedLocation = location.trim();
     dispatch(setFilter({ key: 'location', value: trimmedLocation }));
+
     dispatch(fetchCampers());
   };
 
@@ -66,7 +67,11 @@ const Filters = () => {
               className={styles.checkboxInput}
             />
             <div className={styles.customCheckbox}>
-              <span className={styles.icon}>❄️</span>
+              <span className={styles.icon}>
+                <svg className={styles.iconGrid} width={32} height={32}>
+                  <use href={`${sprite}#icon-wind`} />
+                </svg>
+              </span>
               <span>AC</span>
             </div>
           </label>
@@ -80,7 +85,11 @@ const Filters = () => {
               className={styles.checkboxInput}
             />
             <div className={styles.customCheckbox}>
-              <span className={styles.icon}>⚙️</span>
+              <span className={styles.icon}>
+                <svg className={styles.iconGrid} width={32} height={32}>
+                  <use href={`${sprite}#icon-automatic`} />
+                </svg>
+              </span>
               <span>Automatic</span>
             </div>
           </label>
@@ -94,7 +103,11 @@ const Filters = () => {
               className={styles.checkboxInput}
             />
             <div className={styles.customCheckbox}>
-              <span className={styles.icon}>🍳</span>
+              <span className={styles.icon}>
+                <svg className={styles.iconGrid} width={32} height={32}>
+                  <use href={`${sprite}#icon-cup-hot`} />
+                </svg>
+              </span>
               <span>Kitchen</span>
             </div>
           </label>
@@ -108,7 +121,11 @@ const Filters = () => {
               className={styles.checkboxInput}
             />
             <div className={styles.customCheckbox}>
-              <span className={styles.icon}>📺</span>
+              <span className={styles.icon}>
+                <svg className={styles.iconGrid} width={32} height={32}>
+                  <use href={`${sprite}#icon-tv`} />
+                </svg>
+              </span>
               <span>TV</span>
             </div>
           </label>
@@ -122,7 +139,11 @@ const Filters = () => {
               className={styles.checkboxInput}
             />
             <div className={styles.customCheckbox}>
-              <span className={styles.icon}>🚿</span>
+              <span className={styles.icon}>
+                <svg className={styles.iconGrid} width={32} height={32}>
+                  <use href={`${sprite}#icon-ph-shower`} />
+                </svg>
+              </span>
               <span>Bathroom</span>
             </div>
           </label>
