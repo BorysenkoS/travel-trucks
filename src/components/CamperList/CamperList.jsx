@@ -20,7 +20,11 @@ const CamperList = () => {
   }
 
   if (status === 'failed') {
-    return <p>Error: {error}</p>;
+    return (
+      <p className={styles.errorMessage}>
+        Sorry: No such camper was found according to your criteria
+      </p>
+    );
   }
   return (
     <div className={styles.camperList}>

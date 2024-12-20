@@ -18,8 +18,14 @@ export const fetchCampers = createAsyncThunk(
       params[feature] = true;
     });
 
-    const response = await axios.get(BASE_URL, { params });
-    return response.data.items;
+    try {
+      const response = await axios.get(BASE_URL, { params });
+      return response.data.items;
+    } catch (error) {
+      return rejectWithValue(
+        'Sorry: No such camper was found according to your criteria'
+      );
+    }
   }
 );
 
@@ -77,6 +83,7 @@ const campersSlice = createSlice({
       .addCase(fetchCampers.pending, (state) => {
         state.status = 'loading';
         state.items = [];
+        state.error = null;
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -84,7 +91,7 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCampers.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = 'Sorry, no campers found based on your criteria.';
       });
   },
 });

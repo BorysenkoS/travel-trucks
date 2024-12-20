@@ -1,17 +1,25 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './CamperDetails.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchCampers } from '../../redux/campersSlice';
 
 import sprite from '../../assets/sprite.svg';
 import Features from '../Features/Features';
+import Reviews from '../Reviews/Reviews';
+import BookingForm from '../BookingForm/BookingForm';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 const CamperDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const campers = useSelector((state) => state.campers.items);
   const isLoading = useSelector((state) => state.campers.isLoading);
+  const [activeTab, setActiveTab] = useState('features');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
 
   const camper = campers?.find((camper) => camper.id === id);
 
@@ -54,7 +62,34 @@ const CamperDetails = () => {
         ))}
       </div>
       <p className={styles.text}>{camper.description}</p>
-      <Features camper={camper} />
+      <div className={styles.buttons}>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'features' ? styles.active : ''
+          }`}
+          onClick={() => handleTabClick('features')}
+        >
+          Features
+        </button>
+        <button
+          className={`${styles.tabButton} ${
+            activeTab === 'reviews' ? styles.active : ''
+          }`}
+          onClick={() => handleTabClick('reviews')}
+        >
+          Reviews
+        </button>
+      </div>
+      <div className={styles.detailsComponentWrapper}>
+        <div className={styles.featuresReviewsWrapper}>
+          {activeTab === 'features' && <Features camper={camper} />}
+          {activeTab === 'reviews' && <Reviews reviews={camper.reviews} />}
+        </div>
+
+        <ErrorBoundary>
+          <BookingForm camperName={camper.name} />
+        </ErrorBoundary>
+      </div>
     </div>
   );
 };

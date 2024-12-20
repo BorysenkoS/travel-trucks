@@ -1,0 +1,94 @@
+.form {
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 44px;
+  width: 641px;
+  height: 588px;
+}
+
+.bookTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+
+  margin-bottom: 8px;
+}
+
+.bookText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
+
+  margin-bottom: 24px;
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  margin-bottom: 24px;
+}
+
+input {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  padding: 18px;
+  width: 527px;
+  height: 60px;
+
+  background: var(--inputs);
+}
+
+textarea {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  padding: 18px;
+  width: 527px;
+  height: 118px;
+
+  background: var(--inputs);
+}
+
+.submitButton {
+  display: block;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--white);
+
+  border-radius: 200px;
+  border: none;
+  cursor: pointer;
+  padding: 16px 60px;
+  width: 166px;
+  height: 56px;
+
+  background: var(--button);
+}
+
+.submitButton:hover {
+  background: var(--button-hover);
+}
+
+.custom-toast {
+  background-color: #28a745; /* Зелений фон для успішного повідомлення */
+  color: black; /* Колір тексту */
+  font-size: 16px; /* Розмір шрифту */
+  border-radius: 10px; /* Закруглені кути */
+  padding: 15px 25px; /* Відступи всередині */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тінь */
+}

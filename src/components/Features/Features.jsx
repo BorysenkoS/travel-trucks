@@ -1,35 +1,46 @@
 import React from 'react';
+import sprite from '../../assets/sprite.svg';
 import styles from './Features.module.css';
 
 const Features = ({ camper }) => {
   const features = [
-    { label: 'Transmission', value: camper.transmission },
-    { label: 'Engine', value: camper.engine },
-    { label: 'AC', value: camper.AC },
-    { label: 'Bathroom', value: camper.bathroom },
-    { label: 'Kitchen', value: camper.kitchen },
-    { label: 'TV', value: camper.TV },
-    { label: 'Radio', value: camper.radio },
-    { label: 'Refrigerator', value: camper.refrigerator },
-    { label: 'Microwave', value: camper.microwave },
-    { label: 'Gas', value: camper.gas },
-    { label: 'Water', value: camper.water },
+    {
+      label: 'Transmission',
+      value: camper.transmission,
+      iconId: 'icon-automatic',
+    },
+    { label: 'Engine', value: camper.engine, iconId: 'icon-fuel-pump' },
+    { label: 'AC', value: camper.AC, iconId: 'icon-wind' },
+    { label: 'Bathroom', value: camper.bathroom, iconId: 'icon-ph-shower' },
+    { label: 'Kitchen', value: camper.kitchen, iconId: 'icon-cup-hot' },
+    { label: 'TV', value: camper.TV, iconId: 'icon-tv' },
+    { label: 'Radio', value: camper.radio, iconId: 'icon-ui-radios' },
+    {
+      label: 'Refrigerator',
+      value: camper.refrigerator,
+      iconId: 'icon-solar-fridge-outline',
+    },
+    {
+      label: 'Microwave',
+      value: camper.microwave,
+      iconId: 'icon-lucide-microwave',
+    },
+    { label: 'Gas', value: camper.gas, iconId: 'icon-hugeicons-gas-stove' },
+    { label: 'Water', value: camper.water, iconId: 'icon-ion-water-outline' },
   ];
 
-  // Деталі
   const details = [
     { label: 'Form', value: camper.form },
-    { label: 'Length', value: camper.length ? `${camper.length} m` : null },
-    { label: 'Width', value: camper.width ? `${camper.width} m` : null },
-    { label: 'Height', value: camper.height ? `${camper.height} m` : null },
-    { label: 'Tank Capacity', value: camper.tank ? `${camper.tank} L` : null },
+    { label: 'Length', value: camper.length ? `${camper.length}` : null },
+    { label: 'Width', value: camper.width ? `${camper.width}` : null },
+    { label: 'Height', value: camper.height ? `${camper.height}` : null },
+    { label: 'Capacity', value: camper.tank ? `${camper.tank}` : null },
     {
-      label: 'Fuel Consumption',
-      value: camper.consumption ? `${camper.consumption} L/100km` : null,
+      label: 'Consumption',
+      value: camper.consumption ? `${camper.consumption}` : null,
     },
   ];
 
-  // Відображення активних характеристик
   const activeFeatures = features.filter((feature) => feature.value);
   const activeDetails = details.filter((detail) => detail.value);
 
@@ -38,20 +49,23 @@ const Features = ({ camper }) => {
       <div className={styles.featuresSection}>
         <ul className={styles.featuresList}>
           {activeFeatures.map((feature) => (
-            <li key={feature.label} className={styles.featureItem}>
-              <span className={styles.featureLabel}>{feature.label}:</span>{' '}
-              {feature.value}
+            <li className={styles.featuresItem} key={feature.label}>
+              <svg width={20} height={20} style={{ marginRight: '8px' }}>
+                <use href={`${sprite}#${feature.iconId}`} />
+              </svg>
+              {feature.label}
             </li>
           ))}
         </ul>
       </div>
 
       <div className={styles.detailsSection}>
-        <h3>Vehicle details</h3>
+        <h3 className={styles.vehicleTitle}>Vehicle details</h3>
+        <div className={styles.line}></div>
         <ul className={styles.detailsList}>
           {activeDetails.map((detail) => (
             <li key={detail.label} className={styles.detailItem}>
-              <span className={styles.detailLabel}>{detail.label}:</span>{' '}
+              <span className={styles.detailLabel}>{detail.label}:</span>
               {detail.value}
             </li>
           ))}

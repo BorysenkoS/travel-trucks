@@ -1,0 +1,49 @@
+.reviewsWrapper {
+  width: 631px;
+}
+
+.firstLetter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--button);
+
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+
+  background: var(--badges);
+}
+
+.letterNameRattingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+
+  margin-bottom: 4px;
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.comment {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}

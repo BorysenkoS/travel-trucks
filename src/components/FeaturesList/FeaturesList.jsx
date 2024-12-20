@@ -19,18 +19,6 @@ const FeaturesList = ({ camper }) => {
     { label: 'Bathroom', value: camper.bathroom, iconId: 'icon-ph-shower' },
     { label: 'TV', value: camper.TV, iconId: 'icon-tv' },
     { label: 'Radio', value: camper.radio, iconId: 'icon-ui-radios' },
-    // {
-    //   label: 'Refrigerator',
-    //   value: camper.refrigerator,
-    //   iconId: 'icon-solar-fridge-outline',
-    // },
-    // {
-    //   label: 'Microwave',
-    //   value: camper.microwave,
-    //   iconId: 'icon-lucide-microwave',
-    // },
-    // { label: 'Gas', value: camper.gas, iconId: 'icon-hugeicons-gas-stove' },
-    // { label: 'Water', value: camper.water, iconId: 'icon-ion-water-outline' },
   ];
 
   const activeFeatures = features.filter((feature) => feature.value);

@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter, fetchCampers } from '../../redux/campersSlice';
+import {
+  setFilter,
+  fetchCampers,
+  clearFilters,
+} from '../../redux/campersSlice';
 import styles from './Filters.module.css';
 import sprite from '../../assets/sprite.svg';
 import Button from '../Button/Button';
@@ -8,37 +12,60 @@ import Button from '../Button/Button';
 const Filters = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.campers.filters);
-  const { location, form, features, transmission } = useSelector(
-    (state) => state.campers.filters
-  );
+  const { location, form, features, transmission } = filters;
+
+  const [localFilters, setLocalFilters] = useState({
+    location,
+    form,
+    features,
+    transmission,
+  });
 
   const handleInputChange = (e) => {
-    dispatch(setFilter({ key: 'location', value: e.target.value }));
+    setLocalFilters((prev) => ({
+      ...prev,
+      location: e.target.value,
+    }));
   };
 
   const handleBodyTypeChange = (e) => {
-    dispatch(setFilter({ key: 'form', value: e.target.value }));
+    setLocalFilters((prev) => ({
+      ...prev,
+      form: e.target.value,
+    }));
   };
 
   const handleBodyTypeTransmission = (e) => {
     const value = e.target.value;
-    const isSelected = transmission === value;
+    const isSelected = localFilters.transmission === value;
 
-    dispatch(
-      setFilter({ key: 'transmission', value: isSelected ? '' : value })
-    );
+    setLocalFilters((prev) => ({
+      ...prev,
+      transmission: isSelected ? '' : value,
+    }));
   };
 
   const handleFeatureChange = (feature) => {
-    dispatch(setFilter({ key: 'features', value: feature }));
-    dispatch(fetchCampers());
+    setLocalFilters((prev) => {
+      const updatedFeatures = prev.features.includes(feature)
+        ? prev.features.filter((f) => f !== feature)
+        : [...prev.features, feature];
+      return { ...prev, features: updatedFeatures };
+    });
   };
 
   const handleSearch = () => {
-    const trimmedLocation = location.trim();
-    dispatch(setFilter({ key: 'location', value: trimmedLocation }));
+    dispatch(
+      setFilter({ key: 'location', value: localFilters.location.trim() })
+    );
+    dispatch(setFilter({ key: 'form', value: localFilters.form }));
+    dispatch(setFilter({ key: 'features', value: localFilters.features }));
+    dispatch(
+      setFilter({ key: 'transmission', value: localFilters.transmission })
+    );
 
     dispatch(fetchCampers());
+    dispatch(clearFilters());
   };
 
   return (
@@ -49,7 +76,7 @@ const Filters = () => {
           className={styles.locationSearchInput}
           type="text"
           placeholder="City"
-          value={location}
+          value={localFilters.location}
           onChange={handleInputChange}
         />
       </div>
@@ -62,7 +89,7 @@ const Filters = () => {
             <input
               type="checkbox"
               value="AC"
-              checked={filters.features.includes('AC')}
+              checked={localFilters.features.includes('AC')}
               onChange={() => handleFeatureChange('AC')}
               className={styles.checkboxInput}
             />
@@ -80,7 +107,7 @@ const Filters = () => {
             <input
               type="checkbox"
               value="automatic"
-              checked={transmission === 'automatic'}
+              checked={localFilters.transmission === 'automatic'}
               onChange={handleBodyTypeTransmission}
               className={styles.checkboxInput}
             />
@@ -98,7 +125,7 @@ const Filters = () => {
             <input
               type="checkbox"
               value="kitchen"
-              checked={filters.features.includes('kitchen')}
+              checked={localFilters.features.includes('kitchen')}
               onChange={() => handleFeatureChange('kitchen')}
               className={styles.checkboxInput}
             />
@@ -116,7 +143,7 @@ const Filters = () => {
             <input
               type="checkbox"
               value="TV"
-              checked={filters.features.includes('TV')}
+              checked={localFilters.features.includes('TV')}
               onChange={() => handleFeatureChange('TV')}
               className={styles.checkboxInput}
             />
@@ -134,7 +161,7 @@ const Filters = () => {
             <input
               type="checkbox"
               value="bathroom"
-              checked={filters.features.includes('bathroom')}
+              checked={localFilters.features.includes('bathroom')}
               onChange={() => handleFeatureChange('bathroom')}
               className={styles.checkboxInput}
             />
@@ -155,14 +182,14 @@ const Filters = () => {
         <div className={styles.radioGroup}>
           <label
             className={`${styles.radioLabel} ${
-              form === 'panelTruck' ? styles.active : ''
+              localFilters.form === 'panelTruck' ? styles.active : ''
             }`}
           >
             <input
               type="radio"
               name="form"
               value="panelTruck"
-              checked={form === 'panelTruck'}
+              checked={localFilters.form === 'panelTruck'}
               onChange={handleBodyTypeChange}
               className={styles.radioInput}
             />
@@ -176,14 +203,14 @@ const Filters = () => {
 
           <label
             className={`${styles.radioLabel} ${
-              form === 'fullyIntegrated' ? styles.active : ''
+              localFilters.form === 'fullyIntegrated' ? styles.active : ''
             }`}
           >
             <input
               type="radio"
               name="form"
               value="fullyIntegrated"
-              checked={form === 'fullyIntegrated'}
+              checked={localFilters.form === 'fullyIntegrated'}
               onChange={handleBodyTypeChange}
               className={styles.radioInput}
             />
@@ -197,14 +224,14 @@ const Filters = () => {
 
           <label
             className={`${styles.radioLabel} ${
-              form === 'alcove' ? styles.active : ''
+              localFilters.form === 'alcove' ? styles.active : ''
             }`}
           >
             <input
               type="radio"
               name="form"
               value="alcove"
-              checked={form === 'alcove'}
+              checked={localFilters.form === 'alcove'}
               onChange={handleBodyTypeChange}
               className={styles.radioInput}
             />
