@@ -1,8 +1,15 @@
-# React + Vite
+TravelTrucks - Frontend Web Application
+TravelTrucks is a web application for a company that rents campers. The app allows users to browse available campers, filter them by various criteria, view detailed information for each camper, and make bookings.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Description
+This project is part of a technical task, which involves developing the frontend part of a web application for camper rentals for the company TravelTrucks. The app uses an API to fetch information about campers and provides functionality for filtering, viewing details, and making bookings. All changes are automatically saved when the page is refreshed.
 
-Currently, two official plugins are available:
+Technologies Used
+This project is built with the following technologies and libraries:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React - for building the user interface.
+Redux - for managing the application state.
+React Router - for routing.
+Axios - for making HTTP requests to the backend API.
+Vite - for bundling and fast development.
+CSS (CSS modules) 
