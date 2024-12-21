@@ -1,7 +1,12 @@
 import React from 'react';
+import styles from './Loader.module.css';
 
 const Loader = () => {
-  return <div className="loader">Loading...</div>;
+  return (
+    <div className={styles.loaderWrapper}>
+      <div className={styles.loader}></div>
+    </div>
+  );
 };
 
 export default Loader;

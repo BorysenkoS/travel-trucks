@@ -9,6 +9,7 @@ import Features from '../Features/Features';
 import Reviews from '../Reviews/Reviews';
 import BookingForm from '../BookingForm/BookingForm';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import Loader from '../Loader/Loader';
 
 const CamperDetails = () => {
   const { id } = useParams();
@@ -30,7 +31,11 @@ const CamperDetails = () => {
   }, []);
 
   if (!camper) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (

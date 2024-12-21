@@ -83,3 +83,9 @@ textarea {
 .submitButton:hover {
   background: var(--button-hover);
 }
+
+.error {
+  padding: 5px;
+  width: 527px;
+  color: red;
+}

@@ -4,6 +4,7 @@ import CamperCard from '../../components/CamperCard/CamperCard';
 import { fetchCampers } from '../../redux/campersSlice';
 
 import styles from './CamperList.module.css';
+import Loader from '../Loader/Loader';
 
 const CamperList = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ const CamperList = () => {
   }, [dispatch, status]);
 
   if (status === 'loading') {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (status === 'failed') {
