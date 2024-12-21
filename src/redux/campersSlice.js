@@ -5,7 +5,7 @@ const BASE_URL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers';
 
 export const fetchCampers = createAsyncThunk(
   'campers/fetchCampers',
-  async (_, { getState }) => {
+  async (_, { getState, rejectWithValue }) => {
     const { location, form, features, transmission } =
       getState().campers.filters;
 
@@ -91,7 +91,8 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCampers.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = 'Sorry, no campers found based on your criteria.';
+        state.error =
+          action.payload || 'Sorry, no campers found based on your criteria.';
       });
   },
 });

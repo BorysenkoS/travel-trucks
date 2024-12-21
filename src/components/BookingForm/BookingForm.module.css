@@ -83,12 +83,3 @@ textarea {
 .submitButton:hover {
   background: var(--button-hover);
 }
-
-.custom-toast {
-  background-color: #28a745; /* Зелений фон для успішного повідомлення */
-  color: black; /* Колір тексту */
-  font-size: 16px; /* Розмір шрифту */
-  border-radius: 10px; /* Закруглені кути */
-  padding: 15px 25px; /* Відступи всередині */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тінь */
-}
